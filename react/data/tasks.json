@@ -15,22 +15,22 @@
       "id": 2,
       "activity": "Meeting at Office",
       "when": {
-        "day":"Sunday",
-        "date":11,
-        "month":"July",
-        "year":2022,
-        "time":"11:23"
+        "day": "Sunday",
+        "date": 11,
+        "month": "July",
+        "year": 2022,
+        "time": "11:23"
       }
     },
     {
       "id": 3,
       "activity": "Meeting at School",
       "when": {
-        "day":"Wednesday",
-        "date":1,
-        "month":"July",
-        "year":2022,
-        "time":"13:12"
+        "day": "Wednesday",
+        "date": 1,
+        "month": "July",
+        "year": 2022,
+        "time": "13:12"
       }
     }
   ]

@@ -29,6 +29,7 @@ export default function App() {
     })
     setTasks(dataTasks.filter(task => task.id !== id));
   }
+
   // Add Task
   const addTask = async (task) => {
     const res = await fetch("http://localhost:5000/tasks",{
@@ -46,7 +47,7 @@ export default function App() {
   return (
     <div className="my-container">
       <Header />
-      <Tasks onDelete={deleteTask} dataTasks={dataTasks}/>
+      <Tasks onDelete={deleteTask} dataTasks={dataTasks} />
     </div>
   );
 }
