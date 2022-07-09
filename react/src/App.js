@@ -2,7 +2,6 @@ import { useEffect,useState} from "react";
 import { Header } from "./components/Header";
 import { Tasks } from "./components/Tasks";
 
-
 export default function App() {
   const [dataTasks,setTasks] = useState([])
 
@@ -31,22 +30,26 @@ export default function App() {
   }
 
   // Add Task
-  const addTask = async (task) => {
+  const addTask = async (newTask) => {
+    const id = Math.floor(Math.random()*10000)+1
+    // add id
+    newTask = {id,...newTask}
+    console.log(`data to be inserted: ${JSON.stringify(newTask,null,"  ")}`);
     const res = await fetch("http://localhost:5000/tasks",{
       method: "POST",
       headers: {
         "Content-type": "application/json"
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(newTask)
     })
-    const data = await res.json()
-
-    setTasks([...dataTasks,data])
+    const currTasks = await res.json()
+    console.log(`curr data ${JSON.stringify(currTasks,null,"  ")}`)
+    setTasks([...dataTasks,currTasks])
   }
 
   return (
     <div className="my-container">
-      <Header />
+      <Header onAdd={addTask}/>
       <Tasks onDelete={deleteTask} dataTasks={dataTasks} />
     </div>
   );

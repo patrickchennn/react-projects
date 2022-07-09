@@ -1,7 +1,7 @@
 import React from 'react'
 import {ModalAddTaskForm} from "./ModalAddTaskForm.jsx"
 
-export const Header = () => {
+export const Header = ({onAdd}) => {
   return (
     <header className='my-header'>
 
@@ -11,6 +11,7 @@ export const Header = () => {
         title="Add Task"
         colorMainBtn="dark"
         modalSize="lg"
+        onAdd={onAdd}
       />
       
     </header>

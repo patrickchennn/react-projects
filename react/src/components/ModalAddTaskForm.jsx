@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button"
 import Modal from "react-bootstrap/Modal"
 import {AddTaskForm} from "./AddTaskForm.jsx"
 
-export const ModalAddTaskForm = ({title,colorMainBtn,bodyMsg,modalSize}) => {
+export const ModalAddTaskForm = ({title,colorMainBtn,modalSize,onAdd}) => {
   // close the modal by default
   const [show, setShow] = useState(false);
   const closeModal = () => setShow(false);
@@ -23,7 +23,7 @@ export const ModalAddTaskForm = ({title,colorMainBtn,bodyMsg,modalSize}) => {
         </Modal.Header>
 
         <Modal.Body>
-          <AddTaskForm closeModal={closeModal}/>
+          <AddTaskForm closeModal={closeModal} onAdd={onAdd}/>
         </Modal.Body>
 
       </Modal>

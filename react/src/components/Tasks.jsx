@@ -8,7 +8,6 @@ export const Tasks = ({onDelete,dataTasks}) => {
           <Task task={task} onDelete={onDelete}/>
         )
       )}
-
     </main>
   )
 }
