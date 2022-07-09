@@ -50,7 +50,8 @@ export default function App() {
   return (
     <div className="my-container">
       <Header onAdd={addTask}/>
-      <Tasks onDelete={deleteTask} dataTasks={dataTasks} />
+      {dataTasks.length < 1 ? "nothing in here" : <Tasks onDelete={deleteTask} dataTasks={dataTasks} />
+      }
     </div>
   );
 }
