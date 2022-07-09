@@ -9,7 +9,7 @@ export const ModalAddTaskForm = ({title,colorMainBtn,modalSize,onAdd}) => {
   const closeModal = () => setShow(false);
   const showModal = () => setShow(true);
   return (
-    <div className='modal-container'>
+    <div className='modal-container me-4'>
       {/* if this button is clicked, show the modal */}
       <Button variant={colorMainBtn} onClick={showModal}>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" clasName="bi bi-plus-lg" viewBox="0 0 16 16">

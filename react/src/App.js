@@ -1,57 +1,24 @@
-import { useEffect,useState} from "react";
-import { Header } from "./components/Header";
-import { Tasks } from "./components/Tasks";
+import { BrowserRouter,Routes, Route } from "react-router-dom"
+import MyNavbar from './components/MyNavbar.jsx'
+import Home from "./pages/Home.jsx"
+import About from "./pages/About.jsx"
+import Pricing from "./pages/Pricing.jsx"
+import TaskTracker from "./pages/TaskTracker.jsx"
+
+import "./styles/index.css"
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function App() {
-  const [dataTasks,setTasks] = useState([])
-
-  useEffect(() => {
-    const getTasks = async () => {
-      const tasksFromServer = await fetchTasks()
-      setTasks(tasksFromServer)
-    }
-
-    getTasks()
-  }, [])
-
-  // Fetch Tasks
-  const fetchTasks = async () => {
-    const res = await fetch("http://localhost:5000/tasks")
-    const data = await res.json()
-    return data
-  }
-
-  // Delete Task
-  const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`,{
-      method:"DELETE"
-    })
-    setTasks(dataTasks.filter(task => task.id !== id));
-  }
-
-  // Add Task
-  const addTask = async (newTask) => {
-    const id = Math.floor(Math.random()*10000)+1
-    // add id
-    newTask = {id,...newTask}
-    console.log(`data to be inserted: ${JSON.stringify(newTask,null,"  ")}`);
-    const res = await fetch("http://localhost:5000/tasks",{
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(newTask)
-    })
-    const currTasks = await res.json()
-    console.log(`curr data ${JSON.stringify(currTasks,null,"  ")}`)
-    setTasks([...dataTasks,currTasks])
-  }
-
   return (
-    <div className="my-container">
-      <Header onAdd={addTask}/>
-      {dataTasks.length < 1 ? "nothing in here" : <Tasks onDelete={deleteTask} dataTasks={dataTasks} />
-      }
-    </div>
-  );
+    <BrowserRouter>
+      <MyNavbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/task-tracker" element={<TaskTracker />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
