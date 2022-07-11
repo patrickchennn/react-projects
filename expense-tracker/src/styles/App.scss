@@ -3,12 +3,14 @@ body{
     background-color: $bg-col !important;
 }
 
+h4{margin-bottom: 0 !important;}
+
 .my-container{
     background-color: #f0f0f0;
     margin: 2rem auto;
     border: 3px solid rgb(202, 202, 202);
     padding: 1rem 2rem;
-    max-width: 450px;
+    max-width: 600px;
 
     box-shadow: 0px 0px 5px rgb(36, 35, 35);
 }
@@ -27,4 +29,28 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.income-card,.expense-card{
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 1px 3px rgb(63, 62, 62);
+    &:hover{
+        transition-duration: 500ms;
+        transition-timing-function:ease-out;
+    }
+}
+
+.income-card{
+    border-right: 8px solid rgb(40, 255, 40);
+
+}
+
+.expense-card{
+    border-right: 8px solid rgb(252, 72, 72);
+
 }
