@@ -22,3 +22,6 @@ export default function App() {
     </BrowserRouter>
   )
 }
+
+// This app was created by following this tutorial:
+// https://www.youtube.com/watch?v=w7ejDZ8SWv8&t=4195s
