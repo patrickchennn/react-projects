@@ -1,0 +1,30 @@
+$bg-col: #f7f7f7;
+body{
+    background-color: $bg-col !important;
+}
+
+.my-container{
+    background-color: #f0f0f0;
+    margin: 2rem auto;
+    border: 3px solid rgb(202, 202, 202);
+    padding: 1rem 2rem;
+    max-width: 450px;
+
+    box-shadow: 0px 0px 5px rgb(36, 35, 35);
+}
+
+.vr{
+    background-color: $bg-col;
+    height: inherit;
+    width: .5rem;
+}
+
+.income,
+.expense{
+    width: 100%;
+    background-color: white;
+    padding: 1rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -31,7 +31,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
@@ -56,7 +56,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title:"Webpack App",
+      title:"...",
       template: 'src/template.html',
       filename:"index.html"
     })
