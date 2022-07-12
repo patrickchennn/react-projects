@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteHistoryTransaction = () => {
+const DeleteHistoryTransaction = (id) => {
   return (
     <div>DeleteHistoryTransaction</div>
   )

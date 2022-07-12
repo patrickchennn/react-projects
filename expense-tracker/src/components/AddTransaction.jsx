@@ -1,9 +1,7 @@
-import React,{useContext,useState,useRef} from 'react'
-import { AppContext } from '../App.jsx'
+import {useState,useRef} from 'react'
 
-const AddTransaction = () => {
+const AddTransaction = ({transactions,setTransactions}) => {
 
-  const {transactions,setTransactions} = useContext(AppContext)
   const [tempTransaction,setTempTransaction] = useState({
     id:0,
     title:"",

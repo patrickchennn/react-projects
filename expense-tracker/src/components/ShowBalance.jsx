@@ -1,10 +1,7 @@
-import React,{useContext} from 'react'
-import { AppContext } from '../App.jsx'
 import formatCurrency from '../utils/formatCurrency.js'
 import objectStringifier from '../utils/objectStringifier.js'
 
-const ShowBalance = () => {
-  const {transactions} = useContext(AppContext)
+const ShowBalance = ({transactions}) => {
   // console.log(objectStringifier(transactions))
 
   let income=0,expense=0,totalMoney=0
