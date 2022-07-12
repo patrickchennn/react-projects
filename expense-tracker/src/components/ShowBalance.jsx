@@ -9,7 +9,7 @@ const ShowBalance = ({transactions}) => {
     // console.log(transaction,typeof(transaction));
 
     totalMoney += transaction.amount
-    transaction.areIncomeOrExpense==="income-card" ? income+=transaction.amount : expense += transaction.amount
+    transaction.areIncomeOrExpense==="my-income-card" ? income+=transaction.amount : expense += transaction.amount
   })
   // console.log(income,expense,totalMoney);
 
@@ -23,12 +23,8 @@ const ShowBalance = ({transactions}) => {
         }}>{formatCurrency(totalMoney)}</span>
       </div>
 
-      <div 
-        className="d-flex mt-3" 
-        style={{
-          boxShadow: "0px 1px 3px rgb(0, 0, 0)"
-        }}>
-        <div className='income'>
+      <div className="d-flex mt-3" style={{boxShadow: "0px 1px 3px rgb(0, 0, 0)"}}>
+        <div className='my-income-total'>
           <h4>INCOME</h4>
           <span style={{
             color:"#99FF99",
@@ -38,7 +34,7 @@ const ShowBalance = ({transactions}) => {
 
         <div className="vr"></div>
 
-        <div className='expense'>
+        <div className='my-expense-total'>
           <h4>EXPENSE</h4>
           <span style={{
             color:"#FF0066",

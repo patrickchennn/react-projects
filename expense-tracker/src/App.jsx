@@ -12,19 +12,19 @@ const App = () => {
       id:1,
       title:"buy a dog",
       amount:-1500,
-      areIncomeOrExpense:"expense-card"
+      areIncomeOrExpense:"my-expense-card"
     },
     {
       id:2,
       title:"sell a cat",
       amount:2000,
-      areIncomeOrExpense:"income-card"
+      areIncomeOrExpense:"my-income-card"
     },
     {
       id:7,
       title:"sell a table",
       amount:2000,
-      areIncomeOrExpense:"income-card"
+      areIncomeOrExpense:"my-income-card"
     }
   ])
 
