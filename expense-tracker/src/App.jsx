@@ -10,8 +10,18 @@ export const AppContext = createContext(null)
 const App = () => {
 
   const [transactions,setTransactions] = useState([
-    ["buy a dog",-1200,"expense-card"],
-    ["sell a cat",2000,"income-card"]
+    {
+      id:1,
+      title:"buy a dog",
+      amount:-1500,
+      areIncomeOrExpense:"expense-card"
+    },
+    {
+      id:2,
+      title:"sell a cat",
+      amount:2000,
+      areIncomeOrExpense:"income-card"
+    }
   ])
 
   return (

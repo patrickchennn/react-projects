@@ -1,26 +1,45 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useRef} from 'react'
 import { AppContext } from '../App.jsx'
 
 const AddTransaction = () => {
 
   const {transactions,setTransactions} = useContext(AppContext)
-  // current transaction data
-  const [tempTransaction,setTempTransaction] = useState(["",undefined,undefined])
+  const [tempTransaction,setTempTransaction] = useState({
+    id:0,
+    title:"",
+    amount:"",
+    areIncomeOrExpense:""
+  })
+  const focusInput = useRef(null)
 
-  // console.log(tempTransaction);
   const handleSubmit = (e) => {
+    e.preventDefault()
+    if(tempTransaction.title.length < 1 || typeof(tempTransaction.amount)==="string"){
+      alert("Please fill in the gap before submitting")
+      focusInput.current.focus();
+      return
+    }
+      
+    // add unique id 
+    tempTransaction.id = Date.now()
 
     // if the amount spend is loss/expense(negative value)
-    (tempTransaction[1]<0) ? tempTransaction[2]="expense-card" : tempTransaction[2]="income-card" 
+    tempTransaction.amount<0 ? tempTransaction.areIncomeOrExpense="expense-card" : tempTransaction.areIncomeOrExpense="income-card" 
 
-    // log the final computed data form
-    console.log(tempTransaction)
-
+    // // log the data form
+    // console.log("data form: ", tempTransaction)
+    
+    // // log the final data
+    // console.log("final data: ", transactions)
+    
     setTransactions([...transactions,tempTransaction])
-    // log the final data
-    console.log(transactions)
 
-    e.preventDefault()
+    setTempTransaction({
+      id:0,
+      title:"",
+      amount:"",
+      areIncomeOrExpense:""
+    })
   }
 
   return (
@@ -34,10 +53,11 @@ const AddTransaction = () => {
           id="name-transaction" 
           className="form-control" 
           type="text" 
-          value={tempTransaction[0]}
+          ref={focusInput}
+          value={tempTransaction.title}
           onChange={e => {
-              const newArr = [...tempTransaction]
-              newArr[0]=e.target.value
+              const newArr = {...tempTransaction}
+              newArr.title=e.target.value
               setTempTransaction(newArr)
             }
           } 
@@ -53,10 +73,10 @@ const AddTransaction = () => {
           id="trasaction-amount" 
           type="number" 
           className="form-control" 
-          value={tempTransaction[1]}
+          value={tempTransaction.amount}
           onChange={e => {
-            const newArr = [...tempTransaction]
-            newArr[1]=e.target.value
+            const newArr = {...tempTransaction}
+            newArr.amount=Number(e.target.value)
             setTempTransaction(newArr)
           }
         }  

@@ -1,9 +1,10 @@
 
 const HistoryCard = ({transaction}) => {
   return (
-    <div className={transaction[2]}>
-      <span>{transaction[0]}</span>
-      <span>{transaction[1]}</span>
+    <div className={transaction.areIncomeOrExpense}>
+      <span>{transaction.title}</span>
+      {/* if transaction.amount is positive, add the plus sign(to indicate it's a positive value!)*/}
+      <span>{transaction.amount>0 ? `+${transaction.amount}` : transaction.amount}</span>
       <button 
         className='
           btn 

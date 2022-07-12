@@ -1,34 +1,21 @@
 import React,{useContext} from 'react'
 import { AppContext } from '../App.jsx'
 import formatCurrency from '../utils/formatCurrency.js'
+import objectStringifier from '../utils/objectStringifier.js'
+
 const ShowBalance = () => {
   const {transactions} = useContext(AppContext)
-  let income=0,expense=0,totalMoney=0
-  // let [income,expense,totalMoney] = () => {
-  //   let income=0,expense=0,totalMoney=0;
-  //   transactions.map(transaction => {
-  //     totalMoney += transaction[1]
-  //     (transaction[2]==="income-card") ? income+=transaction[1] :
-  //     expense += transaction[1]
-  //   });
-  //   return [income,expense,totalMoney]
-  // }
-  // console.log(income,expense,totalMoney);
-  transactions.map(transaction => {
-    console.log(transaction[2],typeof(transaction[2]));
-      totalMoney += transaction[1]
-      // TOFINDOUT: why when I use ternary opertor is not working?
-      // (transaction[2]==="income-card") ? income+=transaction[1] : expense += transaction[1]
+  // console.log(objectStringifier(transactions))
 
-      // this works fine
-      if(transaction[2]==="income-card"){
-        income+=transaction[1]
-      }else{
-        expense += transaction[1]
-      }
-  });
-  console.log(income,expense,totalMoney);
-  console.log(transactions,typeof(transactions))
+  let income=0,expense=0,totalMoney=0
+  transactions.forEach(transaction => {
+    // console.log(transaction,typeof(transaction));
+
+    totalMoney += transaction.amount
+    transaction.areIncomeOrExpense==="income-card" ? income+=transaction.amount : expense += transaction.amount
+  })
+  // console.log(income,expense,totalMoney);
+
   return (
     <div className='mt-5'>
       <div>

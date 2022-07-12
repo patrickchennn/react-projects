@@ -12,7 +12,7 @@ const HistoryTransaction = () => {
       <hr />
       <div className='d-flex flex-column' style={{rowGap:"0.5rem"}}>
         {
-          transactions.map(transaction => <HistoryCard transaction={transaction}/>)
+          transactions.map(transaction => <HistoryCard key={transaction.id} transaction={transaction}/>)
         }
       </div>
     </div>
