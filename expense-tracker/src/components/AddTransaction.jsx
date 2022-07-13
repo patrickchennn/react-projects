@@ -1,38 +1,39 @@
 import {useState,useRef} from 'react'
 
-const AddTransaction = ({transactions,setTransactions}) => {
+const AddTransaction = ({onAdd}) => {
 
-  const [tempTransaction,setTempTransaction] = useState({
+  const [dataForm,setDataForm] = useState({
     id:0,
     title:"",
     amount:"",
     areIncomeOrExpense:""
   })
-  const focusInput = useRef(null)
+
+  const focusTitle = useRef(null)
+  const focusAmount = useRef(null)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(tempTransaction.title.length < 1 || typeof(tempTransaction.amount)==="string"){
-      alert("Please fill in the gap before submitting")
-      focusInput.current.focus();
+    if(dataForm.title.length < 1 ){
+      alert("Enter some text")
+      focusTitle.current.focus();
       return
     }
-      
+    else if(typeof(dataForm.amount)==="string"){
+      alert("Enter some number")
+      focusAmount.current.focus()
+      return
+    }
     // add unique id 
-    tempTransaction.id = Date.now()
+    dataForm.id = Date.now()
 
     // if the amount spend is loss/expense(negative value)
-    tempTransaction.amount<0 ? tempTransaction.areIncomeOrExpense="expense-card" : tempTransaction.areIncomeOrExpense="income-card" 
+    dataForm.amount<0 ? dataForm.areIncomeOrExpense="my-expense-card" : dataForm.areIncomeOrExpense="my-income-card" 
 
-    // // log the data form
-    // console.log("data form: ", tempTransaction)
-    
-    // // log the final data
-    // console.log("final data: ", transactions)
-    
-    setTransactions([...transactions,tempTransaction])
+    onAdd(dataForm)
 
-    setTempTransaction({
+    setDataForm({
       id:0,
       title:"",
       amount:"",
@@ -51,12 +52,12 @@ const AddTransaction = ({transactions,setTransactions}) => {
           id="name-transaction" 
           className="form-control" 
           type="text" 
-          ref={focusInput}
-          value={tempTransaction.title}
+          ref={focusTitle}
+          value={dataForm.title}
           onChange={e => {
-              const newArr = {...tempTransaction}
+              const newArr = {...dataForm}
               newArr.title=e.target.value
-              setTempTransaction(newArr)
+              setDataForm(newArr)
             }
           } 
           placeholder='Enter text...'/>
@@ -69,13 +70,14 @@ const AddTransaction = ({transactions,setTransactions}) => {
         </label>
         <input 
           id="trasaction-amount" 
-          type="number" 
           className="form-control" 
-          value={tempTransaction.amount}
+          type="number"
+          ref={focusAmount}
+          value={dataForm.amount}
           onChange={e => {
-            const newArr = {...tempTransaction}
+            const newArr = {...dataForm}
             newArr.amount=Number(e.target.value)
-            setTempTransaction(newArr)
+            setDataForm(newArr)
           }
         }  
           placeholder='Enter amount...'/>

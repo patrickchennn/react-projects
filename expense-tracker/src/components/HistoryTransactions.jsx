@@ -2,7 +2,7 @@ import HistoryCard from './HistoryCard.jsx'
 import { GlobalContext } from '../context/GlobalState.jsx'
 import {useContext} from "react"
 
-const HistoryTransaction = ({onDelete}) => {
+const HistoryTransactions = ({onDelete}) => {
   const {transactions} = useContext(GlobalContext)
 
   return (
@@ -18,4 +18,4 @@ const HistoryTransaction = ({onDelete}) => {
   )
 }
 
-export default HistoryTransaction
+export default HistoryTransactions

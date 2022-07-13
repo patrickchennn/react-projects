@@ -1,15 +1,14 @@
-export default (state,action) => {
-  console.log(state,typeof(state))
+export default (transactions,action) => {
+  console.log(transactions,typeof(transactions))
   console.log(action,typeof(action))
   switch (action.type) {
     case "DELETE_HISTORY_TRANSACTION":
-      const filtered = state.transactions.filter(transaction => transaction.id !== action.payload)
-    // setTransactions(filtered)
-      return {
-        ...state,
-        transactions:filtered
-      }
+      const filtered = transactions.filter(transaction => transaction.id !== action.payload)
+      return filtered
+    case "ADD_TRANSACTION":
+      return [...transactions,action.newTransaction]
+       
     default:
-      return state
+      return transactions
   }
 }

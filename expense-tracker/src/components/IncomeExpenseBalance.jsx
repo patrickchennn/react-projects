@@ -5,7 +5,7 @@ import Balance from './Balance.jsx'
 
 const IncomeExpenseBalance = () => {
   const {transactions} = useContext(GlobalContext)
-  // console.log(transactions)
+  console.log(transactions)
 
   let income=0,expense=0,totalMoney=0
   transactions.forEach(transaction => {
