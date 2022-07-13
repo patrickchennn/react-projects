@@ -1,6 +1,10 @@
 import HistoryCard from './HistoryCard.jsx'
+import { GlobalContext } from '../context/GlobalState.jsx'
+import {useContext} from "react"
 
-const HistoryTransaction = ({transactions,onDelete}) => {
+const HistoryTransaction = ({onDelete}) => {
+  const {transactions} = useContext(GlobalContext)
+
   return (
     <div className="mt-5">
       <h4><span>History</span></h4>

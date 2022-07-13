@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 const HistoryCard = ({transaction,onDelete}) => {
+  
   const [isDeleteBtnShowed,setDeleteBtnShowed] = useState(false)
   
   const showDeleteBtn = () => setDeleteBtnShowed(true)
