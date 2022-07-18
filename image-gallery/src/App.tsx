@@ -1,13 +1,15 @@
 import Navbar from "./components/Navbar";
 import Thumbnail from "./components/Thumbnail";
 import Gallery from "./components/Gallery";
+import { useState } from "react";
 
 export default function App() {
+  const [imgCategory,setImgCategory]: [string,Function] = useState("")
   return (
     <div>
-      <Navbar />
+      <Navbar setImgCategory={setImgCategory}/>
       <Thumbnail />
-      <Gallery />
+      <Gallery imgCategory={imgCategory}/>
     </div>
   );
 }
