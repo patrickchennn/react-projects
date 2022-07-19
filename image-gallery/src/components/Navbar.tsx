@@ -1,15 +1,23 @@
-interface NavBarProps{
-  setImgCategory:Function
-}
-const Navbar = ({setImgCategory}: NavBarProps) => {
-  function categoryOnClick(e: any){
+import { useAppContext } from "../context/AppContext"
+
+const Navbar = () => {
+  interface AppContextInterface {
+    imgCategory: string,
+    searchInput: string,
+    setImgCategory: React.Dispatch<React.SetStateAction<string>>,
+    setSearchInput: React.Dispatch<React.SetStateAction<string>>
+  }
+  const {setImgCategory} = useAppContext() as AppContextInterface
+  const categoryOnClick = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement | any
     // console.log(e.currentTarget)
-    // console.log(e.target)
-    if(e.currentTarget!==e.target){
-      // console.log(e.target.textContent.toLowerCase())
-      setImgCategory(e.target.textContent.toLowerCase())
+    // console.log(target)
+    if(e.currentTarget!==target){
+      // console.log(target.textContent.toLowerCase())
+      setImgCategory(target.textContent.toLowerCase())
     }
   }
+  
   return (
     <>
       <nav className="py-5 px-10 flex justify-between">
