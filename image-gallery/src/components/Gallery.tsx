@@ -11,13 +11,13 @@ const Gallery = () => {
   }
   const {imgCategory,searchInput} = useAppContext() as AppContextInterface
 
-  console.log("gallery component is called")
+  // console.log("gallery component is called")
 
   const [imgs,setImgs] = useState<Array<Object>>([])
   const [areImgsFetched,setAreImgsFetched] = useState(false)
   
   const key: string | undefined = process.env.REACT_APP_PIXABAY_API_KEY
-  const url: string = `https://pixabay.com/api/?key=${key}&per_page=15&category=${imgCategory}&q=${searchInput}`
+  const url: string = `https://pixabay.com/api/?key=${key}&per_page=30&category=${imgCategory}&q=${searchInput}`
   // console.log(`APIkey = ${key}`)
 
   // get images
@@ -42,6 +42,12 @@ const Gallery = () => {
     return data
   }
 
+  // TODO: add "more" button which it will render more images
+  // const getMoreImgs =  () => {
+  //    getImgs()
+  //   console.log(imgs)
+  // }
+
   useEffect(() => {
     console.log("useeffect called")
     getImgs()
@@ -52,20 +58,40 @@ const Gallery = () => {
   // eslint-disable-next-line
   },[url])
 
+  
   console.log(imgs)
 
-  // render the html
+  // render the HTML
+  // if images already fetched from server
   if(areImgsFetched){
-    // console.log("render the html")
+    // and there are no images found
+    if(imgs.length < 1){
+      return (
+        <div className="m-10 flex justify-center">
+          <h1 className="text-6xl">Images Not Found</h1>
+        </div>
+      )
+    }
     return (
-      <div className="my-4 mx-8 flex flex-wrap gap-3">
-        {
-          imgs.map((img:any) => <Card key={img.id} img={img}/> )
-        }
+      <div className="shadow-2xl shadow-inner mx-3 my-3 py-4 rounded-xl bg-gray-100">
+        <div className=" flex flex-wrap justify-center gap-3">
+          {
+            imgs.map((img:any) => <Card key={img.id} img={img}/> )
+          }
+        </div>
+        {/* TODO: add "more" button which basically it will render more images whenever we click the button*/}
+        {/* The main problem I can't guarantee that the new rendered images will be random */}
+        {/* possible solution: is to add a random number to the image id so that the image will appear randomly. But it seems like a lot of work and error prone*/}
+        {/* example solution: suppose we have img.id = 712312 and we add any number so that it will different from 712312. In this case let's add 1. So img.id = 712313*/}
+        {/* and another problem is what if image with id 712313 does not exist?*/}
+        {/* another algorithm is necessary in order to check the images... */}
+        {/* If there is a random image option in the API, it will be easier to implement this feature */}
+        {/* <div onClick={getMoreImgs} className="mt-12 flex justify-center">
+          <button className="w-48 rounded-2xl py-3 bg-green-400 text-3xl text-stone-600">More</button>
+        </div> */}
       </div>
     )
   }else{
-    // console.log("loading dulu boss");
     return (
       <div className="m-10 flex justify-center">
         <h1 className="text-6xl">Loading...</h1>
